@@ -5,5 +5,6 @@ public class CharExample {
         char a = 89;
         System.out.println(a);
 
+
     }
 }
