@@ -30,5 +30,6 @@ public class FigurePainterByKaren {
         }
         System.out.println();
         System.out.println();
+
     }
 }
