@@ -44,8 +44,72 @@ public class DynamicArray {
     //տպել մասիվի ավելացված էլեմենտները
     public void print() {
         for (int i = 0; i < size; i++) {
-            System.out.println(array[i]);
+            System.out.print(array[i] + " ");
         }
+    }
+
+    //ջնջել մասիվի index-երորդ էլեմենտը
+    //եթե չկա նման ինդեքսով էլեմենտ, տպել, որ չկա նման էլեմենտ
+    public void deleteByIndex(int index) {
+        if(index < 0 || index >size){
+            System.out.println("Index does not exist");
+        }else {
+            for (int i = index; i < size - 1; i++) {
+                array[i] = array[i + 1];
+            }
+            array[size] = 0;
+            size--;
+        }
+    }
+    //տրված value-ն դնելու ենք տրված index-ով էլեմենտի տեղը։
+    //Հին արժեքը կկորի
+    //եթե նման ինդեքսով էլեմենտ չկա, գրում ենք որ չկա։
+    public void set(int index, int value) {
+        if(index < 0 || index >size){
+            System.out.println("Index does not exist");
+        }else{
+            array[index] = value;
+        }
+    }
+
+    //ավելացնել տրված value-ն տրված ինդեքսում, իսկ էղած էլեմենտները մի հատ աջ տանել։
+    //Եթե չկա նման ինդեքս, տպել որ չկա
+    public void add(int index, int value) {
+        if(index < 0 || index >size){
+            System.out.println("Index does not exist");
+        }else{
+            if(array.length - size < 1){
+                extend();
+            }
+            for (int i = size-1; i >= index ; i--) {
+                array[i + 1] = array[i];
+            }
+            array[index] = value;
+            size++;
+        }
+    }
+    //Վերադարձնել true եթե տրված value-ն կա մեր մասիվի մեջ, եթե ոչ false
+    public boolean exists(int value) {
+        boolean result = false;
+        for (int i = 0; i < size; i++) {
+            if(array[i] == value){
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+    //Վերադարձնել տրված value-ի ինդեքսը, եթե շատ կա տվյալ թվից, վերադարձնել առաջին ինդեքսը։
+//եթե չկա, -1
+    public int getIndexByValue(int value) {
+        int result = -1;
+        for (int i = 0; i < size; i++) {
+            if(array[i] == value){
+                result = i;
+                break;
+            }
+        }
+        return result;
     }
 
 }

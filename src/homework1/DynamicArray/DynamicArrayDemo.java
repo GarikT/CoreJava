@@ -15,5 +15,23 @@ public class DynamicArrayDemo {
         dynArr.add(10);
         dynArr.add(11);
         dynArr.print();
+
+        dynArr.deleteByIndex(16);
+        System.out.println();
+        dynArr.print();
+
+        System.out.println();
+        dynArr.set(17, 77);
+        dynArr.print();
+
+        System.out.println();
+        dynArr.add(1, -27);
+        dynArr.print();
+        System.out.println();
+
+        System.out.println(dynArr.exists(-2));
+        System.out.println();
+
+        System.out.println(dynArr.getIndexByValue(-11));
     }
 }
