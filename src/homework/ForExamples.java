@@ -1,4 +1,4 @@
-package homeworks;
+package homework;
 
 public class ForExamples {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package homework1.DynamicArray;
+package homework.DynamicArray;
 
 public class DynamicArray {
 
@@ -25,9 +25,10 @@ public class DynamicArray {
     //3․ հին մասիվի հղումը կապենք նոր մասիվի հղման հետ։
     private void extend() {
         int[] newArray = new int[array.length + 10];
-        for (int i = 0; i < array.length; i++) {
-            newArray[i] = array[i];
-        }
+        System.arraycopy(array,0, newArray, 0, array.length);
+//        for (int i = 0; i < array.length; i++) {
+//            newArray[i] = array[i];
+//        }
         array = newArray;
     }
 
@@ -51,7 +52,7 @@ public class DynamicArray {
     //ջնջել մասիվի index-երորդ էլեմենտը
     //եթե չկա նման ինդեքսով էլեմենտ, տպել, որ չկա նման էլեմենտ
     public void deleteByIndex(int index) {
-        if(index < 0 || index >size){
+        if(index < 0 || index >=size){
             System.out.println("Index does not exist");
         }else {
             for (int i = index; i < size - 1; i++) {
@@ -65,7 +66,7 @@ public class DynamicArray {
     //Հին արժեքը կկորի
     //եթե նման ինդեքսով էլեմենտ չկա, գրում ենք որ չկա։
     public void set(int index, int value) {
-        if(index < 0 || index >size){
+        if(index < 0 || index >=size){
             System.out.println("Index does not exist");
         }else{
             array[index] = value;
@@ -75,7 +76,7 @@ public class DynamicArray {
     //ավելացնել տրված value-ն տրված ինդեքսում, իսկ էղած էլեմենտները մի հատ աջ տանել։
     //Եթե չկա նման ինդեքս, տպել որ չկա
     public void add(int index, int value) {
-        if(index < 0 || index >size){
+        if(index < 0 || index >=size){
             System.out.println("Index does not exist");
         }else{
             if(array.length - size < 1){
