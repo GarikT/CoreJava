@@ -21,23 +21,32 @@ public class BraceChecker {
                     break;
                 case ')':
                     popped = stack.pop();
-                    if (popped != '(') {
+                    if( popped == '*'){
+                        System.out.println( ch + " brace closed at " + i + ", but no matching opening brace was found");
+                    } else if (popped != '(' && popped != '*') {
                         System.out.println("Error: opened " + popped + " but closed " + ch + " at " + i);
                     }
                     break;
                 case '}':
                     popped = stack.pop();
-                    if (popped != '{') {
+                    if( popped == '*'){
+                        System.out.println( ch + " brace closed at " + i + ", but no matching opening brace was found");
+                    } else if (popped != '{' && popped != '*') {
                         System.out.println("Error: opened " + popped + " but closed " + ch + " at " + i);
                     }
                     break;
                 case ']':
                     popped = stack.pop();
-                    if (popped != '[') {
+                    if( popped == '*'){
+                        System.out.println( ch + " brace closed at " + i + ", but no matching opening brace was found");
+                    } else if (popped != '[' && popped != '*') {
                         System.out.println("Error: opened " + popped + " but closed " + ch + " at " + i);
                     }
                     break;
             }
+        }
+        if(stack.tos != -1){
+            System.out.println("There are brace[s] in the text that's been opened but not closed");
         }
     }
 }

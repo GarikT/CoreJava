@@ -34,7 +34,7 @@ public class Stack {
     public char pop() {
         char result;
         if (tos == -1) {
-            System.out.println("Stack is Empty.");
+            //System.out.println("Stack is Empty.");
             result = '*';
         } else {
             shorten();
