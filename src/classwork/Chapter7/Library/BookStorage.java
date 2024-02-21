@@ -17,11 +17,8 @@ public class BookStorage {
     }
 
     public void print(){
-        Book b;
         for (int i = 0; i < size; i++) {
-            b = books[i];
-            System.out.println(b.getTitel() + " " + b.getAuthorName() + " " +
-                    b.getPrice() + " " + b.getCount());
+            System.out.println(books[i]);
         }
     }
 
@@ -29,9 +26,9 @@ public class BookStorage {
         Book b;
         for (int i = 0; i < size; i++) {
             b = books[i];
-            if(b.getTitel().contains(keyword)
+            if(b.getTitle().contains(keyword)
                     || b.getAuthorName().contains(keyword)) {
-                System.out.println(b.getTitel() + " " + b.getAuthorName() + " " +
+                System.out.println(b.getTitle() + " " + b.getAuthorName() + " " +
                         b.getPrice() + " " + b.getCount());
             }
         }

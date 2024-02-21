@@ -1,13 +1,13 @@
 package classwork.Chapter7.Library;
 
 public class Book {
-    private String titel;
+    private String title;
     private String authorName;
     private double price;
     private int count;
 
-    public Book(String titel, String authorName, double price, int count) {
-        this.titel = titel;
+    public Book(String title, String authorName, double price, int count) {
+        this.title = title;
         this.authorName = authorName;
         this.price = price;
         this.count = count;
@@ -16,8 +16,8 @@ public class Book {
     public Book() {
     }
 
-    public String getTitel() {
-        return titel;
+    public String getTitle() {
+        return title;
     }
 
     public String getAuthorName() {
@@ -32,8 +32,8 @@ public class Book {
         return count;
     }
 
-    public void setTitel(String titel) {
-        this.titel = titel;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setAuthorName(String authorName) {
@@ -46,5 +46,15 @@ public class Book {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", authorName='" + authorName + '\'' +
+                ", price=" + price +
+                ", count=" + count +
+                '}';
     }
 }
