@@ -1,5 +1,10 @@
 package homework.employeemanagement;
 
+import homework.employeemanagement.model.Company;
+import homework.employeemanagement.model.Employee;
+import homework.employeemanagement.storage.CompanyStorage;
+import homework.employeemanagement.storage.EmployeeStorage;
+
 import java.util.Scanner;
 
 public class EmployeeManagementMain {

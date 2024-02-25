@@ -1,4 +1,6 @@
-package homework.employeemanagement;
+package homework.employeemanagement.storage;
+
+import homework.employeemanagement.model.Company;
 
 public class CompanyStorage {
     private Company[] companies = new Company[10];

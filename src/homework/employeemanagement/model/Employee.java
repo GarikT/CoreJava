@@ -1,4 +1,4 @@
-package homework.employeemanagement;
+package homework.employeemanagement.model;
 
 public class Employee {
     private String id;
