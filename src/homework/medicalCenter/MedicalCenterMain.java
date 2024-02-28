@@ -4,7 +4,9 @@ import homework.medicalCenter.model.Doctor;
 import homework.medicalCenter.model.Patient;
 import homework.medicalCenter.storage.DoctorStorage;
 import homework.medicalCenter.storage.PatientStorage;
+import homework.medicalCenter.util.DateUtil;
 
+import java.util.Date;
 import java.util.Scanner;
 
 public class MedicalCenterMain {
@@ -70,8 +72,8 @@ public class MedicalCenterMain {
         String email = scanner.nextLine();
         System.out.println("Please enter patient's phone number:");
         String phone = scanner.nextLine();
-        System.out.println("Please enter patient's registration date:");
-        String regdate = scanner.nextLine();
+        System.out.println("Please enter patient's registration date in this format: dd/MM/yyyy hh:mm");
+        Date regdate = DateUtil.stringToDateTime(scanner.nextLine());
         Patient patient = new Patient(id, name, surname, email, phone, d, regdate);
         patientStorage.add(patient);
         System.out.println("Patient added");
