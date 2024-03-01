@@ -1,5 +1,6 @@
 package homework.medicalCenterByKaren;
 
+import homework.medicalCenterByKaren.exception.PersonNotFoundException;
 import homework.medicalCenterByKaren.model.Doctor;
 import homework.medicalCenterByKaren.model.Patient;
 import homework.medicalCenterByKaren.storage.PersonStorage;
@@ -15,6 +16,13 @@ public class MedicalCenterMain {
         Doctor doctor1 = new Doctor("D002", "Dr. Petros", "Petrosyan", "dr.petros@mail.com", "092345", "surgeon");
         personStorage.add(doctor);
         personStorage.add(doctor1);
+
+        try {
+            Doctor doctorD001 = personStorage.getDoctorById("D001");
+            System.out.println(doctorD001.getProfession());
+        } catch (PersonNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
 
         String appointmentDateStr = "29/02/2024 10:00";
         Date appointmentDate = DateUtil.stringToDateTime(appointmentDateStr);

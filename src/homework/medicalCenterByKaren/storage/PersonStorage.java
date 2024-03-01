@@ -1,6 +1,7 @@
 package homework.medicalCenterByKaren.storage;
 
 
+import homework.medicalCenterByKaren.exception.PersonNotFoundException;
 import homework.medicalCenterByKaren.model.Doctor;
 import homework.medicalCenterByKaren.model.Patient;
 import homework.medicalCenterByKaren.model.Person;
@@ -25,6 +26,18 @@ public class PersonStorage {
                 System.out.println(people[i]);
             }
         }
+    }
+
+    public Doctor getDoctorById(String id) throws PersonNotFoundException {
+        for (int i = 0; i < size; i++) {
+            if(people[i] instanceof Doctor doctor ){
+                if(doctor.getID().equals(id)){
+                    return (Doctor) people[i];
+                }
+            }
+        }
+        //return null;
+        throw new PersonNotFoundException("Doctor with " + id + " not found");
     }
 
     public void printPatients(){
