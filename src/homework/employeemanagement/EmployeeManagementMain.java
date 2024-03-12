@@ -1,5 +1,6 @@
 package homework.employeemanagement;
 
+import homework.employeemanagement.exception.EmployeeNotFoundException;
 import homework.employeemanagement.model.Company;
 import homework.employeemanagement.model.Employee;
 import homework.employeemanagement.storage.CompanyStorage;
@@ -73,27 +74,29 @@ public class EmployeeManagementMain implements Command {
 
         System.out.println("Please enter employee ID");
         String employeeId = scanner.nextLine();
-        Employee employeeFromStorage = employeeStorage.getById(employeeId);
-        if(employeeFromStorage == null){
-            System.out.println("Employee with " + employeeId + " does not exists");
-            return;
+        try {
+            Employee employeeFromStorage = employeeStorage.getById(employeeId);
+            System.out.println("Please enter employee name");
+            String employeeName = scanner.nextLine();
+            System.out.println("Please enter employee surname");
+            String employeeSurname = scanner.nextLine();
+            System.out.println("Please enter employee phone number");
+            String employeePhoneNumber = scanner.nextLine();
+            System.out.println("Please enter employee position");
+            String employeePosition = scanner.nextLine();
+            System.out.println("Please enter employee salary in AMD");
+            double employeeSalary = Double.parseDouble(scanner.nextLine());
+            employeeFromStorage.setName(employeeName);
+            employeeFromStorage.setSurname(employeeSurname);
+            employeeFromStorage.setPhone(employeePhoneNumber);
+            employeeFromStorage.setPosition(employeePosition);
+            employeeFromStorage.setSalary(employeeSalary);
+            System.out.println("Employee updated");
+        }catch (EmployeeNotFoundException e){
+            System.out.println(e.getMessage());
+        }catch(NumberFormatException e){
+            System.out.println("Wrong salary, please input only numbers!");
         }
-        System.out.println("Please enter employee name");
-        String employeeName = scanner.nextLine();
-        System.out.println("Please enter employee surname");
-        String employeeSurname = scanner.nextLine();
-        System.out.println("Please enter employee phone number");
-        String employeePhoneNumber = scanner.nextLine();
-        System.out.println("Please enter employee position");
-        String employeePosition = scanner.nextLine();
-        System.out.println("Please enter employee salary in AMD");
-        double employeeSalary = Double.parseDouble(scanner.nextLine());
-        employeeFromStorage.setName(employeeName);
-        employeeFromStorage.setSurname(employeeSurname);
-        employeeFromStorage.setPhone(employeePhoneNumber);
-        employeeFromStorage.setPosition(employeePosition);
-        employeeFromStorage.setSalary(employeeSalary);
-        System.out.println("Employee updated");
     }
 
     private static void changeCompany() {
@@ -125,16 +128,20 @@ public class EmployeeManagementMain implements Command {
         employeeStorage.searchEmployeeByCompany(companyFromStorage);
         System.out.println("Please enter employee ID");
         String employeeId = scanner.nextLine();
-        Employee employeeFromStorage = employeeStorage.getById(employeeId);
-        if(employeeFromStorage == null){
-            System.out.println("Employee with " + employeeId + " does not exists");
-            return;
+        try {
+            Employee employeeFromStorage = employeeStorage.getById(employeeId);
+//            if (employeeFromStorage == null) {
+//                System.out.println("Employee with " + employeeId + " does not exists");
+//                return;
+//            }
+            if (!employeeFromStorage.getCompany().equals(companyFromStorage)) {
+                System.out.println("Wrong employee id.");
+                return;
+            }
+            employeeStorage.deleteById(employeeId);
+        }catch (EmployeeNotFoundException e){
+            System.out.println(e.getMessage());
         }
-        if(!employeeFromStorage.getCompany().equals(companyFromStorage)){
-            System.out.println("Wrong employee id.");
-            return;
-        }
-        employeeStorage.deleteById(employeeId);
 
     }
 
@@ -165,11 +172,10 @@ public class EmployeeManagementMain implements Command {
     private static void searchEmployeeById() {
         System.out.println("Please enter employee ID");
         String employeeId = scanner.nextLine();
-        Employee byId = employeeStorage.getById(employeeId);
-        if(byId == null){
-            System.out.println("Employee does not exist");
-        }else{
-            System.out.println(byId);
+        try {
+            System.out.println(employeeStorage.getById(employeeId));
+        }catch(EmployeeNotFoundException e){
+            System.out.println(e.getMessage());
         }
     }
 
@@ -184,28 +190,34 @@ public class EmployeeManagementMain implements Command {
         }
         System.out.println("Please enter employee ID");
         String employeeId = scanner.nextLine();
-        Employee employeeFromStorage = employeeStorage.getById(employeeId);
-        if(employeeFromStorage != null){
-            System.out.println("Employee with " + employeeId + " already exists");
-            return;
+        boolean exists;
+        try {
+            employeeStorage.getById(employeeId);
+            exists = true;
+        }catch (EmployeeNotFoundException e) {
+            exists = false;
         }
-        System.out.println("Please enter employee name");
-        String employeeName = scanner.nextLine();
-        System.out.println("Please enter employee surname");
-        String employeeSurname = scanner.nextLine();
-        System.out.println("Please enter employee phone number");
-        String employeePhoneNumber = scanner.nextLine();
-        System.out.println("Please enter employee position");
-        String employeePosition = scanner.nextLine();
-        System.out.println("Please enter employee salary in AMD");
-        double employeeSalary = Double.parseDouble(scanner.nextLine());
-        System.out.println("Please enter employee birth date (dd-MM-yyyy)");
-        String dateOfBirthStr = scanner.nextLine();
-        Date dateOfBirth = DateUtil.stringToDate(dateOfBirthStr);
-        Date registerDate = new Date();
-        Employee employee = new Employee(employeeId, employeeName, employeeSurname, employeePhoneNumber, employeeSalary, employeePosition, companyFromStorage, dateOfBirth, registerDate);
-        employeeStorage.add(employee);
-        System.out.println("Employee Registered");
+        if(!exists){
+            System.out.println("Please enter employee name");
+            String employeeName = scanner.nextLine();
+            System.out.println("Please enter employee surname");
+            String employeeSurname = scanner.nextLine();
+            System.out.println("Please enter employee phone number");
+            String employeePhoneNumber = scanner.nextLine();
+            System.out.println("Please enter employee position");
+            String employeePosition = scanner.nextLine();
+            System.out.println("Please enter employee salary in AMD");
+            double employeeSalary = Double.parseDouble(scanner.nextLine());
+            System.out.println("Please enter employee birth date (dd-MM-yyyy)");
+            String dateOfBirthStr = scanner.nextLine();
+            Date dateOfBirth = DateUtil.stringToDate(dateOfBirthStr);
+            Date registerDate = new Date();
+            Employee employee = new Employee(employeeId, employeeName, employeeSurname, employeePhoneNumber, employeeSalary, employeePosition, companyFromStorage, dateOfBirth, registerDate);
+            employeeStorage.add(employee);
+            System.out.println("Employee Registered");
+        }else{
+            System.out.println("Employee already exists!");
+        }
     }
 
     private static void addCompany() {

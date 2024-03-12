@@ -1,5 +1,6 @@
 package homework.employeemanagement.storage;
 
+import homework.employeemanagement.exception.EmployeeNotFoundException;
 import homework.employeemanagement.model.Company;
 import homework.employeemanagement.model.Employee;
 
@@ -24,13 +25,13 @@ public class EmployeeStorage {
         employees = temp;
     }
 
-    public Employee getById(String employeeId) {
+    public Employee getById(String employeeId) throws EmployeeNotFoundException {
         for (int i = 0; i < size; i++) {
             if(employees[i].getId().equals(employeeId)){
                 return employees[i];
             }
         }
-        return null;
+        throw new EmployeeNotFoundException("Employee with " + employeeId + " does not exist");
     }
 
     public void searchEmployeeByCompany(Company employeFromStorage) {
