@@ -17,7 +17,7 @@ public class ProductStorage {
     public ProductStorage() {
     }
 
-    public void AddProduct(Product p){
+    public void addProduct(Product p){
         products.add(p);
         System.out.println("Product successfully added!");
     }
