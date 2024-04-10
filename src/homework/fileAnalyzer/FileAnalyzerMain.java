@@ -22,7 +22,7 @@ public class FileAnalyzerMain {
         System.out.println(fa.topFrequentWords(path, 5));
 
         System.out.println("\n======= countWordOccurrences =====");
-        System.out.println(fa.countWordOccurrences(path, "the"));
+        System.out.println(fa.countWordOccurrences(path, "thea"));
 
     }
 }

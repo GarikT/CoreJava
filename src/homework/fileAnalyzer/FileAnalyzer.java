@@ -85,12 +85,32 @@ public class FileAnalyzer {
         }else{
             return map;
         }
+        //Karen's version
+        /*
+        Map<String, Integer> wordMap = wordMap(path);
+        List<Map.Entry<String, Integer>> entries = new ArrayList<>(wordMap.entrySet());
+        entries.sort(new Comparator<>() {
+            @Override
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                return o2.getValue().compareTo(o1.getValue());
+            }
+        });
+        Map<String, Integer> resultMap = new LinkedHashMap<>();
+        for (int i = 0; i < n; i++) {
+            Map.Entry<String, Integer> stringIntegerEntry = entries.get(i);
+            resultMap.put(stringIntegerEntry.getKey(), stringIntegerEntry.getValue());
+        }
+        return resultMap;
+        */
     }
 
     public int countWordOccurrences(String path, String word) throws IOException {
         // Читаем файл, находим количество вхождений слова и возвращаем это число
         Map<String, Integer> map;
         map = wordMap(path);
+        if(!map.containsKey(word)){
+            return 0;
+        }
         return map.get(word);
     }
 
